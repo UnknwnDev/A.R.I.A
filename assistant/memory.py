@@ -55,10 +55,10 @@ class Memory:
         """Loads data with given type from json file.
 
         Args:
-            _type (str, optional): _description_. Defaults to "conversation".
+            _type (str, optional): data type for recall. Defaults to "conversation".
 
         Returns:
-            _type_: _description_
+            any: data found from given data type.
         """
         data = None
         # Open file

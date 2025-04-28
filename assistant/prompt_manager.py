@@ -6,14 +6,14 @@ class PromptManager:
             Respond to the user's input with the best information you have.
             """
 
-    def build_prompt(self, user_input):
-        """_summary_
+    def build_prompt(self, user_input: str) -> str:
+        """Builds a prompt for assistant to take and generate text
 
         Args:
-            user_input (_type_): _description_
+            user_input (str): users query
 
         Returns:
-            _type_: _description_
+            str: prompt for generation
         """
         # Include Aria's identity in each prompt to reinforce that Aria knows who she is
         prompt = self.system_prompt + "\nUser: " + user_input + "\nAria:"

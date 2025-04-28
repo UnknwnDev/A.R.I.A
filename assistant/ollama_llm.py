@@ -10,7 +10,7 @@ class OllamaLLM:
         """Generates a response from the olama_llm model
 
         Args:
-            prompt (str): user input
+            prompt (str): structured system and user promt and input for generation
             history (list): list of previous user input and response
 
         Returns:
