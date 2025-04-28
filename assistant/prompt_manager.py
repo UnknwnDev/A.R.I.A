@@ -7,6 +7,14 @@ class PromptManager:
             """
 
     def build_prompt(self, user_input):
+        """_summary_
+
+        Args:
+            user_input (_type_): _description_
+
+        Returns:
+            _type_: _description_
+        """
         # Include Aria's identity in each prompt to reinforce that Aria knows who she is
         prompt = self.system_prompt + "\nUser: " + user_input + "\nAria:"
         return prompt

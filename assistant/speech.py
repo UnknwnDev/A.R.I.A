@@ -10,10 +10,20 @@ class Speech:
         self.output_file = "./data/out.mp3"
 
     async def speak_async(self, text):
+        """_summary_
+
+        Args:
+            text (_type_): _description_
+        """
         communicate = edge_tts.Communicate(text, self.voice)
         await communicate.save(self.output_file)
 
     def speak(self, text):
+        """_summary_
+
+        Args:
+            text (_type_): _description_
+        """
         asyncio.run(self.speak_async(text))
         try:
             sound = AudioSegment.from_file(self.output_file, format="mp3")

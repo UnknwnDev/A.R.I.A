@@ -1,19 +1,27 @@
 from ollama import chat, Options
 from config.settings import MODEL_NAME
 
+
 class OllamaLLM:
     def __init__(self):
         self.model = MODEL_NAME
 
-    def get_response(self, prompt, history):
+    def get_response(self, prompt: str, history: list) -> str:
+        """Generates a response from the olama_llm model
+
+        Args:
+            prompt (str): user input
+            history (list): list of previous user input and response
+
+        Returns:
+            str: response to the users input
+        """
         # format history as chat format for Ollama
-        full_history = [{"role": "system", "content": "You are a helpful assistant."}]
+        full_history = []
         full_history += history
         full_history.append({"role": "user", "content": prompt})
 
         response = chat(
-            model=self.model,
-            messages=full_history,
-            options=Options(temperature=0.7)
+            model=self.model, messages=full_history, options=Options(temperature=0.7)
         )
-        return response['message']['content']
+        return response["message"]["content"]
