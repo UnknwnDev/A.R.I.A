@@ -6,7 +6,7 @@ class OllamaLLM:
     def __init__(self):
         self.model = MODEL_NAME
 
-    def get_response(self, prompt: str, history: list) -> str:
+    def get_response(self, prompt: str, history: list = []) -> str:
         """Generates a response from the olama_llm model
 
         Args:

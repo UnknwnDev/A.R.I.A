@@ -42,7 +42,8 @@ class Memory:
                 else:
                     file_data[self.current_date] = {_type: data}
             else:
-                file_data = {self.current_date: {_type: data}}
+                file_data.update({self.current_date: {_type: data}})
+                file.seek(0)
 
             json.dump(file_data, file, indent=2)
 
