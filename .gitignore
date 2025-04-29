@@ -175,4 +175,4 @@ cython_debug/
 .pypirc
 
 
-./data/memory.json
+data/memory.json
