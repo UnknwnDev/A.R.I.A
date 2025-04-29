@@ -8,6 +8,7 @@ class IntentManager:
             You are to classify the users input as either "command", "chat", "question".
             Respond with only one word: 'command', 'chat', 'question'.
             Note questions will not have '?' in them.
+            commands are usually for things like system tasks or web searching.
             """
         self.ollama = OllamaLLM()
 
