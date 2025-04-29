@@ -1,11 +1,12 @@
 import json
-import datetime
+from datetime import date, datetime, timedelta
 
 
 class Memory:
-    def __init__(self) -> None:
+    def __init__(self, num_days: int = 5) -> None:
         self.file_path = "data/memory.json"
-        self.current_date = datetime.date.today().strftime("%m/%d/%Y")
+        self.current_date = date.today().strftime("%m/%d/%Y")
+        self.day_span = num_days
 
     def store_data(self, data=None, _type: str = "conversation") -> int:
         """Stores data generated or created into a json file
@@ -20,7 +21,7 @@ class Memory:
         if data is None:
             return -1
 
-        with open(self.file_path, "r+") as file:
+        with open(self.file_path, "+r") as file:
             # Format
 
             # Load existing data
@@ -61,20 +62,46 @@ class Memory:
         Returns:
             any: data found from given data type.
         """
-        data = None
+
         # Open file
-        with open(self.file_path, "r") as file:
-            # Load existing data
-            try:
-                file_data = json.load(file)
-            except Exception:
-                # File is empty
-                return None
+        try:
+            with open(self.file_path, "r") as file:
+                # Load existing data
+                try:
+                    file_data = json.load(file)
+                except Exception:
+                    # File is empty
+                    return None
 
-            # Loads the days current data
-            if self.current_date in file_data.keys():
-                if _type in file_data[self.current_date].keys():
-                    data = file_data[self.current_date][_type]
+                data = []
 
-        # Data found
-        return data
+                # Gets the previous depending on day span
+                days = self.__get_days()
+
+                # Loads the data from days given
+                for day in days:
+                    if day in file_data.keys():
+                        if _type in file_data[day].keys():
+                            data.extend(file_data[day][_type])
+
+            # Data found
+            return data
+        except Exception as e:
+            print(e)
+            return None
+
+    def __get_days(self) -> list:
+        """Creates a list of days previous to current from given day span.
+
+        Returns:
+            list: list of days
+        """
+        today = datetime.now()
+
+        days = []
+        for i in range(self.day_span - 1, 0, -1):
+            previous_day = today - timedelta(days=i)
+            days.append(previous_day.strftime("%m/%d/%Y"))
+
+        days.append(self.current_date)
+        return days
