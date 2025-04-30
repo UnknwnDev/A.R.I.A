@@ -40,6 +40,10 @@ class Assistant:
                 self.chat(user_input)
 
     def chat(self, user_input: str) -> None:
+        response = self.get_resonse(user_input)
+        self.speaker.speak(response)
+
+    def get_resonse(self, user_input: str) -> str:
         prompt = self.prompter.build_prompt(user_input)
         response = self.llm.get_response(prompt, self.history)
 
@@ -47,6 +51,5 @@ class Assistant:
         self.history.append({"role": "assistant", "content": response})
 
         self.memory.store_data(self.history[-2:])
-
         print(f"Assistant: {response}\n")
-        self.speaker.speak(response)
+        return response
