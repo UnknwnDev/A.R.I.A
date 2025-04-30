@@ -3,10 +3,10 @@
 ## Overview
 A.R.I.A (Artificially Responsive Intelligent Assistant) is a project aimed at developing an intelligent assistant capable of performing various tasks to enhance productivity and user experience. The project leverages modern programming techniques and tools to create a responsive and efficient system.
 
-## Features
-- Intelligent task automation.
-- User-friendly interface.
-- Scalable and modular design for future enhancements.
+<!-- ## Features -->
+<!-- - Intelligent task automation. -->
+<!-- - User-friendly interface. -->
+<!-- - Scalable and modular design for future enhancements. -->
 
 ## Future Goals
 - **Expand Functionality**: Add support for more complex tasks and integrations.
